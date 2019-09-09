@@ -15,27 +15,12 @@
 import jenkins.model.*;
 import hudson.model.Fingerprint.RangeSet;  
 def call() {
-def buildRange = "41-44"
-//***MAX_BUILDS = 4
 def jobName = "N_D_P_P"
-def job = Jenkins.instance.getItem(jobName)
 
-println ""
+// The range of build numbers to delete.
+def buildRange = "32-34"
+def j = jenkins.model.Jenkins.instance.getItem(jobName);
+def r = RangeSet.fromString(buildRange, true);
+j.getBuilds(r).each { it.delete() }
 
-println "selected Jenkins Job : "
-println job.name
-
-//**def recent = job.builds.limit(MAX_BUILDS)
- def r = RangeSet.fromString(buildRange, true);
-println recent
-
-  for (build in job.builds) {
-    if (!recent.contains(build)) {
-      println ""
-      println "========================================================="
-      println "Preparing to delete: " + build
-      build.delete()
-    println ""
-    }
-  }
 }
