@@ -40,7 +40,7 @@ def call() {
   //***
   
 MAX_BUILDS = 5
-def jobName = "N_D_P"
+def jobName = "N_D_P_P"
 def job = Jenkins.instance.getItem(jobName)
 
 println ""
