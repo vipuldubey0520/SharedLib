@@ -39,21 +39,25 @@ def call() {
   
   //***
   
-import jenkins.model.Jenkins
-import hudson.model.Job
+MAX_BUILDS = 5
+def jobName = "github-test"
+def job = Jenkins.instance.getItem(jobName)
 
-MAX_BUILDS = 4
+println ""
 
-for (job in Jenkins.instance.items) {
-  println job.name
+println "selected Jenkins Job : "
+println job.name
 
-  def recent = job.builds.limit(MAX_BUILDS)
+def recent = job.builds.limit(MAX_BUILDS)
+println recent
 
   for (build in job.builds) {
     if (!recent.contains(build)) {
+      println ""
+      println "========================================================="
       println "Preparing to delete: " + build
       build.delete()
+    println ""
     }
   }
-}
 }
