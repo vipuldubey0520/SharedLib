@@ -14,8 +14,8 @@
 // The name of the job.
 import hudson.model.Fingerprint.RangeSet;  
 def call() {
-
-MAX_BUILDS = 4
+def buildRange = "41-44"
+//***MAX_BUILDS = 4
 def jobName = "N_D_P_P"
 def job = Jenkins.instance.getItem(jobName)
 
@@ -24,7 +24,8 @@ println ""
 println "selected Jenkins Job : "
 println job.name
 
-def recent = job.builds.limit(MAX_BUILDS)
+//**def recent = job.builds.limit(MAX_BUILDS)
+ def r = RangeSet.fromString(buildRange, true);
 println recent
 
   for (build in job.builds) {
