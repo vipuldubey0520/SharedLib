@@ -39,25 +39,6 @@ def call() {
   
   //***
   
-MAX_BUILDS = 1
 def jobName = "N_D_P_P"
-def job = Jenkins.instance.getItem(jobName)
-
-println ""
-
-println "selected Jenkins Job : "
-println job.name
-
-def recent = job.builds.limit(MAX_BUILDS)
-println recent
-
-  for (build in job.builds) {
-    if (!recent.contains(build)) {
-      println ""
-      println "========================================================="
-      println "Preparing to delete: " + build
-      build.delete()
-    println ""
-    }
-  }
+Jenkins.instance.getItemByFullName('jobName').builds.findAll { it.number > 24 && it.number < 8 }.each { it.delete() }
 }
