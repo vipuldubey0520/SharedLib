@@ -13,16 +13,19 @@
 
 // The name of the job.
 def call() {
-def jobName = "N_D_P"
+//def jobName = "N_D_P"
 
 // The range of build numbers to delete.
-def buildRange = "3-6"
+//def buildRange = "3-6"
 
 //import jenkins.model.*;
-import hudson.model.Fingerprint.RangeSet;
-def j = jenkins.model.Jenkins.instance.getItem(jobName);
+//import hudson.model.Fingerprint.RangeSet;
+//def j = jenkins.model.Jenkins.instance.getItem(jobName);
 
-def r = RangeSet.fromString(buildRange, true);
+//def r = RangeSet.fromString(buildRange, true);
 
-j.getBuilds(r).each { it.delete() }
+//j.getBuilds(r).each { it.delete() }
+  
+  
+  Jenkins.instance.getItemByFullName('N_D_P').builds.findAll { it.number > 2 && it.number < 6 }.each { it.delete() }
 }
