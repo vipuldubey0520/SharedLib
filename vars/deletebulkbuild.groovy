@@ -39,7 +39,7 @@ def call() {
   
   //***
   
-MAX_BUILDS = 0
+MAX_BUILDS = 1
 def jobName = "N_D_P_P"
 def job = Jenkins.instance.getItem(jobName)
 
