@@ -31,9 +31,33 @@ def call() {
   //Jenkins.instance.getItemByFullName('N_D_P').builds.findAll { it.number > 2 && it.number < 6 }.each { it.delete() }
   
   //****
-  def jobName = "N_D_P"
-def job = Jenkins.instance.getItem(jobName)
-job.getBuilds().each { it.delete() }
-job.nextBuildNumber = 1
-job.save()
+ // def jobName = "N_D_P"
+//def job = Jenkins.instance.getItem(jobName)
+//job.getBuilds().each { it.delete() }
+//job.nextBuildNumber = 1
+//job.save()
+  
+  //***
+  
+  // Jenkins job
+def jobName = 'foo'
+// Range of builds to delete
+def rs = Fingerprint.RangeSet.fromString("2-5", false);
+// Set to true to actually delete. Use false to test the script.
+def reallyDelete = false;
+
+// ----------------------------------
+def job = Jenkins.instance.getItemByFullName(jobName);
+println("Job: ${job.fullName}");
+
+def builds = Jenkins.instance.getItemByFullName(jobName).getBuilds(rs);
+println("Found ${builds.size()} builds");
+builds.each{ b-> 
+  if (reallyDelete) {
+    println("Deleting ${b}");
+    b.delete();
+  } else {
+    println("Found match ${b}");
+  }
+}
 }
