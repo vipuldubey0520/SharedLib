@@ -39,25 +39,21 @@ def call() {
   
   //***
   
-  // Jenkins job
-def jobName = 'N_D_P'
-// Range of builds to delete
-def rs = Fingerprint.RangeSet.fromString("2-5", false);
-// Set to true to actually delete. Use false to test the script.
-def reallyDelete = false;
+import jenkins.model.Jenkins
+import hudson.model.Job
 
-// ----------------------------------
-def job = Jenkins.instance.getItemByFullName(jobName);
-println("Job: ${job.fullName}");
+MAX_BUILDS = 4
 
-def builds = Jenkins.instance.getItemByFullName(jobName).getBuilds(rs);
-println("Found ${builds.size()} builds");
-builds.each{ b-> 
-  if (reallyDelete) {
-    println("Deleting ${b}");
-    b.delete();
-  } else {
-    println("Found match ${b}");
+for (job in Jenkins.instance.items) {
+  println job.name
+
+  def recent = job.builds.limit(MAX_BUILDS)
+
+  for (build in job.builds) {
+    if (!recent.contains(build)) {
+      println "Preparing to delete: " + build
+      build.delete()
+    }
   }
 }
 }
