@@ -12,8 +12,9 @@
 // the script in manually.
 
 // The name of the job.
+import hudson.model.Fingerprint.RangeSet;  
 def call() {
-  
+
 MAX_BUILDS = 4
 def jobName = "N_D_P_P"
 def job = Jenkins.instance.getItem(jobName)
