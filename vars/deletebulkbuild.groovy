@@ -25,7 +25,15 @@ def call() {
 //def r = RangeSet.fromString(buildRange, true);
 
 //j.getBuilds(r).each { it.delete() }
+
+  //******
   
+  //Jenkins.instance.getItemByFullName('N_D_P').builds.findAll { it.number > 2 && it.number < 6 }.each { it.delete() }
   
-  Jenkins.instance.getItemByFullName('N_D_P').builds.findAll { it.number > 2 && it.number < 6 }.each { it.delete() }
+  //****
+  def jobName = "N_D_P"
+def job = Jenkins.instance.getItem(jobName)
+job.getBuilds().each { it.delete() }
+job.nextBuildNumber = 1
+job.save()
 }
