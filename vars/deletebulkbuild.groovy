@@ -40,7 +40,7 @@ def call() {
   //***
   
   // Jenkins job
-def jobName = 'foo'
+def jobName = 'N_D_P'
 // Range of builds to delete
 def rs = Fingerprint.RangeSet.fromString("2-5", false);
 // Set to true to actually delete. Use false to test the script.
