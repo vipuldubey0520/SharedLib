@@ -40,5 +40,5 @@ def call() {
   //***
   
 def jobName = "N_D_P_P"
-Jenkins.instance.getItemByFullName('jobName').builds.findAll { it.number > 24 && it.number < 8 }.each { it.delete() }
+Jenkins.instance.getItemByFullName('jobName').builds.findAll { it.number > 1 && it.number < 38 }.each { it.delete() }
 }
