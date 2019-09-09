@@ -12,6 +12,7 @@
 // the script in manually.
 
 // The name of the job.
+import jenkins.model.*;
 import hudson.model.Fingerprint.RangeSet;  
 def call() {
 def buildRange = "41-44"
