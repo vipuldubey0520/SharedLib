@@ -12,6 +12,7 @@
 // the script in manually.
 
 // The name of the job.
+def call() {
 def jobName = "N_D_P"
 
 // The range of build numbers to delete.
@@ -24,3 +25,4 @@ def j = jenkins.model.Jenkins.instance.getItem(jobName);
 def r = RangeSet.fromString(buildRange, true);
 
 j.getBuilds(r).each { it.delete() }
+}
