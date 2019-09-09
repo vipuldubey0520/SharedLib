@@ -18,7 +18,7 @@ def jobName = "N_D_P"
 // The range of build numbers to delete.
 def buildRange = "3-6"
 
-import jenkins.model.*;
+//import jenkins.model.*;
 import hudson.model.Fingerprint.RangeSet;
 def j = jenkins.model.Jenkins.instance.getItem(jobName);
 
