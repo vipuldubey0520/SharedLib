@@ -12,10 +12,10 @@
 // the script in manually.
 
 // The name of the job.
-def jobName = "Nitin"
+def jobName = "N_D_P"
 
 // The range of build numbers to delete.
-def buildRange = "2-3"
+def buildRange = "3-6"
 
 import jenkins.model.*;
 import hudson.model.Fingerprint.RangeSet;
