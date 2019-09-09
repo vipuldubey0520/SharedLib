@@ -13,16 +13,26 @@
 
 // The name of the job.
 def call() {
+  
+MAX_BUILDS = 4
 def jobName = "N_D_P_P"
+def job = Jenkins.instance.getItem(jobName)
 
-// The range of build numbers to delete.
-def buildRange = "32-34"
+println ""
 
-import jenkins.model.*;
-import hudson.model.Fingerprint.RangeSet;
-def j = jenkins.model.Jenkins.instance.getItem(jobName);
+println "selected Jenkins Job : "
+println job.name
 
-def r = RangeSet.fromString(buildRange, true);
+def recent = job.builds.limit(MAX_BUILDS)
+println recent
 
-j.getBuilds(r).each { it.delete() }
+  for (build in job.builds) {
+    if (!recent.contains(build)) {
+      println ""
+      println "========================================================="
+      println "Preparing to delete: " + build
+      build.delete()
+    println ""
+    }
+  }
 }
