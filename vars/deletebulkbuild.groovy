@@ -17,7 +17,7 @@ def call() {
 def jobName = "N_D_P_P"
 
 // The range of build numbers to delete.
-def buildRange = "21-47"
+def buildRange = "48-49"
 def j = jenkins.model.Jenkins.instance.getItem(jobName);
 def r = RangeSet.fromString(buildRange, true);
 j.getBuilds(r).each { it.delete() }
