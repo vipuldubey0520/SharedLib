@@ -1,4 +1,3 @@
-*/
 /*
    Delete all disabled FreeStyle and MatrixProject Jenkins jobs except for a
    FreeStyle job named "_jervis_generator".
