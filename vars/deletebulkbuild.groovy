@@ -14,10 +14,10 @@ import jenkins.model.*;
 import hudson.model.Fingerprint.RangeSet;  
 def call() {
   // The name of the job.
-def jobName = "N_D_P_P"
+def jobName = "Deploy"
 
 // The range of build numbers to delete.
-def buildRange = "51-61"
+def buildRange = "100-107"
 def j = jenkins.model.Jenkins.instance.getItem(jobName);
 def r = RangeSet.fromString(buildRange, true);
 j.getBuilds(r).each { it.delete() }
