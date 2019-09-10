@@ -24,5 +24,6 @@ Jenkins.instance.getAllItems(Job.class).findAll { Job j ->
     j.delete()
     println "Deleted ${j.fullName}"
 }
+null
 }
 
