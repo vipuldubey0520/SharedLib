@@ -8,12 +8,21 @@ import hudson.model.FreeStyleProject
 import hudson.model.Job
 import jenkins.model.Jenkins
 
+def call() {
+/*
 Jenkins.instance.getAllItems(Job.class).findAll { Job j ->
     ( j in FreeStyleProject || j in MatrixProject ) &&
     j.isDisabled() && j.fullName != '_jervis_generator'
 }.each { Job j ->
     j.delete()
     println "Deleted ${j.fullName}"
+*/
+Jenkins.instance.getAllItems(Job.class).findAll { Job j ->
+    ( j in FreeStyleProject || j in MatrixProject ) &&
+    j.fullName = 'testvipul'
+}.each { Job j ->
+    j.delete()
+    println "Deleted ${j.fullName}"
+}
 }
 
-null
