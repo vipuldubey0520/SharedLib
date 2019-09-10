@@ -1,7 +1,9 @@
 /*
    Delete all disabled FreeStyle and MatrixProject Jenkins jobs except for a
-   FreeStyle job named "_jervis_generator".
+   FreeStyle job named to be deleted here is "testvipul1".
  */
+
+ 
 import hudson.matrix.MatrixProject
 import hudson.model.FreeStyleProject
 import hudson.model.Job
@@ -18,3 +20,15 @@ Jenkins.instance.getAllItems(Job.class).findAll { Job j ->
 null
 }
 
+
+
+//this below will delete all jobs which are disabled but leave testvipul1 job
+
+/*
+ 	Jenkins.instance.getAllItems(Job.class).findAll { Job j ->
+ 	( j in FreeStyleProject || j in MatrixProject ) &&
+ 	j.isDisabled() && j.fullName != 'testvipul1'
+ 	}.each { Job j ->
+ 	j.delete()
+ 	println "Deleted ${j.fullName}"
+ 	*/
