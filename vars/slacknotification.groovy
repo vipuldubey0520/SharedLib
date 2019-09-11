@@ -1,3 +1,7 @@
+//before using this below script please make sure you have slack configured and integrated to jenkin
+
+
+
 #!/usr/bin/env groovy
 
 def call(String buildResult) {
