@@ -19,7 +19,7 @@ import jenkins.branch.*
 import org.jenkinsci.plugins.workflow.job.*
 import org.jenkinsci.plugins.workflow.multibranch.*
   
-//def call() {
+def call() {
   
 //************************************************************************************************ Case 1
   // give name of the job with the range of builds you want to delete .
@@ -106,4 +106,4 @@ for (item in Jenkins.instance.items) {
     listJobObjects(item, 10, 0)
     println('*************************************')
 }
-//}
+}
