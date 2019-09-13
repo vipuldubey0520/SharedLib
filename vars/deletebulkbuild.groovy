@@ -12,7 +12,7 @@
 
 import jenkins.model.*;
 import hudson.model.Fingerprint.RangeSet;  
-def call() {
+//def call() {
   
 //************************************************************************************************ Case 1
   // give name of the job with the range of builds you want to delete .
@@ -99,4 +99,4 @@ for (item in Jenkins.instance.items) {
     listJobObjects(item, 10, 0)
     println('*************************************')
 }
-}
+//}
