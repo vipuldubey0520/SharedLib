@@ -52,6 +52,6 @@ Jenkins.instance.getItemByFullName(jobName).builds.findAll {
 
 //************************************************************************************************ Case 3
 def jobName = "N_D_P_P"
-def maxNumber = 183
+def maxNumber = 184
 Jenkins.instance.getItemByFullName(jobName).builds.findAll { it.result == Result.FAILURE && it.number <= maxNumber}.each { it.delete() }
 }
