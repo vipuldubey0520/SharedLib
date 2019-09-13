@@ -51,6 +51,7 @@ Jenkins.instance.getItemByFullName(jobName).builds.findAll {
   
 
 //************************************************************************************************ Case 3
+// this housekeeping groovy script is to delete all failed build till some maximum build number.
 def jobName = "N_D_P_P"
 def maxNumber = 184
 Jenkins.instance.getItemByFullName(jobName).builds.findAll { it.result == Result.FAILURE && it.number <= maxNumber}.each { it.delete() }
