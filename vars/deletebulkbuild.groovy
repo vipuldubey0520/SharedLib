@@ -23,7 +23,7 @@ def r = RangeSet.fromString(buildRange, true);
 j.getBuilds(r).each { it.delete() }
 **/
  def jobName = "N_D_P_P"
-def maxNumber = 100
+def maxNumber = 20
 
 Jenkins.instance.getItemByFullName(jobName).builds.findAll {
   it.number <= maxNumber
