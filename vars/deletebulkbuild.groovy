@@ -11,7 +11,14 @@
 
 
 import jenkins.model.*;
-import hudson.model.Fingerprint.RangeSet;  
+import hudson.model.Fingerprint.RangeSet;
+import jenkins.model.*
+import hudson.model.*
+import com.cloudbees.hudson.plugins.folder.*
+import jenkins.branch.*
+import org.jenkinsci.plugins.workflow.job.*
+import org.jenkinsci.plugins.workflow.multibranch.*
+  
 //def call() {
   
 //************************************************************************************************ Case 1
