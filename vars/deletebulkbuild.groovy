@@ -19,7 +19,7 @@ import jenkins.branch.*
 import org.jenkinsci.plugins.workflow.job.*
 import org.jenkinsci.plugins.workflow.multibranch.*
   
-//def call() {
+def call() {
   
 //************************************************************************************************ Case 1
   // give name of the job with the range of builds you want to delete .
@@ -49,61 +49,7 @@ Jenkins.instance.getItemByFullName(jobName).builds.findAll {
 **/
 //************************************************************************************************
   
-def deleteOldBuilds(item, Integer numberOfBuildsToKeep, Integer numberOfSuccessfulBuildsKept) {
-    def count = 1
 
-    println('Checking for Old Builds...')
-
-    for (build in item.getBuilds()) {
-        if(count++ >= numberOfBuildsToKeep) {
-            if(item.getBuildStatusIconClassName() == 'icon-blue' && numberOfSuccessfulBuildsKept == 0) {
-                println('Keep ' + build)
-            } else {
-                println('Deleting ' + build)
-                build.delete()
-            }
-        } else if(item.getBuildStatusIconClassName() == 'icon-blue') {
-            numberOfSuccessfulBuildsKept++
-        }
-    }
-    println('PRIOR BUILD COUNT: (' + count + ')')
-    println ''
+def jobName = "N_D_P_P"
+Jenkins.instance.getItemByFullName(jobName).builds.findAll { it.result == Result.FAILURE}.each { it.delete() }
 }
-
-def listJobObjects(item, Integer numberOfBuildsToKeep, Integer numberOfSuccessfulBuildsKept) {
-    if(item instanceof Project) {
-        println('PROJECT: (' + item.getName() + ')')
-        deleteOldBuilds(item, numberOfBuildsToKeep, numberOfSuccessfulBuildsKept)
-    } else if(item instanceof Folder) {
-        println ''
-        println('FOLDER: (' + item.getName() + ')')
-        println('*************************************')
-        for (subItem in item.items) {
-            listJobObjects(subItem, numberOfBuildsToKeep, numberOfSuccessfulBuildsKept)
-        }
-    } else if(item instanceof WorkflowMultiBranchProject) {
-        println('MULTIBRANCH-PROJECT: (' + item.getName() + ')')
-        for (subItem in item.items) {
-            listJobObjects(subItem, numberOfBuildsToKeep, numberOfSuccessfulBuildsKept)
-        }
-    }  else if(item instanceof WorkflowJob) {
-        println('MULTIBRANCH-JOB: (' + item.getName() + ')')
-        deleteOldBuilds(item, numberOfBuildsToKeep, numberOfSuccessfulBuildsKept)
-    } else if(item instanceof OrganizationFolder) {
-        println('ORG-FOLDER: (' + item.getName() + ')')
-        for (subItem in item.items) {
-            listJobObjects(subItem, numberOfBuildsToKeep, numberOfSuccessfulBuildsKept)
-        }
-    } else {
-        println('UNKNOWN: (' + item.getName() + ')')
-        println('CLASS: (' + item.getClass() + ')')
-        println('INSPECT: (' + item.inspect() + ')')
-    }
-}
-
-for (item in Jenkins.instance.items) {
-    println ''
-    listJobObjects(item, 10, 0)
-    println('*************************************')
-}
-//}
